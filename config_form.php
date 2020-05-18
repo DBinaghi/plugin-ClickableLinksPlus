@@ -1,6 +1,6 @@
 <?php
 	$clickable_links_plus_title 		= get_option('clickable_links_plus_title');
-	$clickable_links_plus_label_len		= get_option('clickable_links_plus_label_length');
+	$clickable_links_plus_label_length	= get_option('clickable_links_plus_label_length');
 	$clickable_links_plus_wellformatted	= get_option('clickable_links_plus_wellformatted');
 
 	$db = get_db();
@@ -31,13 +31,13 @@
 
  <div class="field">
 	<div class="two columns alpha">
-		<?php echo $view->formLabel('clickable_links_plus_label_len', __('Link label length')); ?>
+		<?php echo $view->formLabel('clickable_links_plus_label_length', __('Link label length')); ?>
 	</div>
 	<div class="inputs five columns omega">
 		<p class="explanation">
 			<?php echo __('Maximum number of URL\'s characters shown as the link\'s label (a minimum of 15 characters is suggested). If blank, the whole URL will be shown.'); ?>
 		</p>
-		<?php echo $view->formText('clickable_links_plus_label_len', $clickable_links_plus_label_len); ?>
+		<?php echo $view->formText('clickable_links_plus_label_length', $clickable_links_plus_label_length); ?>
 	</div>
 </div>
 
@@ -47,7 +47,7 @@
 	</div>
 	<div class="inputs five columns omega">
 		<p class="explanation">
-			<?php echo __('If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: "http://example.com" will be turned into a link, but "www.example.com" will not).'); ?>
+			<?php echo __('If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: http://example.com will be turned into a link, but www.example.com will not).'); ?>
 		</p>
 		<?php echo $view->formCheckbox('clickable_links_plus_wellformatted', $clickable_links_plus_wellformatted, null, array('1', '0')); ?>
 	</div>
