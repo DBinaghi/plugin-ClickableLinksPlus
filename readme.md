@@ -4,7 +4,7 @@
 
 Plugin for Omeka Classic. Once installed and active, URLs contained in selected elements will be turned into hyperlinks opening up in a new page (target = "_blank"). Plugin works with all valid web URLs and e-mail addresses.
 
-The plugin uses the free js library Linkify for finding links in plain-text and converting them to HTML <a> tags.
+The plugin uses the free js library <a href="https://github.com/SoapBox/linkifyjs/" target="_blank">Linkify</a> for finding links in plain-text and converting them to HTML <a> tags.
 
 Settings allow to choose the elements affected by the plugin, plus whether to show a tooltip, whether to shorten the visibile URL and whether to affect only well-formatted URLs.
 
