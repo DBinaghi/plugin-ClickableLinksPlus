@@ -5,7 +5,7 @@
  *
  * @package Omeka\Plugins\ClickableLinksPlus
  */
-class ClickableLinksPLusPlugin extends Omeka_Plugin_AbstractPlugin {
+class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 	
 	protected $_hooks = array(
 		'install',
@@ -76,10 +76,10 @@ class ClickableLinksPLusPlugin extends Omeka_Plugin_AbstractPlugin {
 			}
 			$elements[$elSet->name][] = $element->name;
 		}
-		set_option('clickable_links_plus_elements', 		serialize($elements));
-		set_option('clickable_links_plus_title', 			$post['clickable_links_plus_title']);
-		set_option('clickable_links_plus_wellformatted',	$post['clickable_links_plus_wellformatted']);
-		set_option('clickable_links_plus_label_length',		$post['clickable_links_plus_label_length']);
+		set_option('clickable_links_plus_elements', 	serialize($elements));
+		set_option('clickable_links_plus_title', 	$post['clickable_links_plus_title']);
+		set_option('clickable_links_plus_wellformatted',$post['clickable_links_plus_wellformatted']);
+		set_option('clickable_links_plus_label_length',	$post['clickable_links_plus_label_length']);
 	}
 
 	public function hookConfigForm()
@@ -87,8 +87,8 @@ class ClickableLinksPLusPlugin extends Omeka_Plugin_AbstractPlugin {
 		include('config_form.php');
 	}
 
-    /**
-	 * Public header
+    	/**
+	 * Adds reference to Linkify js files if needed
 	 */
 	public function hookPublicHead()
 	{
@@ -126,26 +126,26 @@ class ClickableLinksPLusPlugin extends Omeka_Plugin_AbstractPlugin {
 			$validation = (get_option('clickable_links_plus_wellformatted') ? '/^(http|ftp)s?:\/\//.test(value)' : 'value');
 			
 			$content = "<script>
-							var options = {
-								attributes: {
-									rel: 'nofollow', 
-									title: '" . $tooltip . "'
-								}, 
-								format: {
-									url: function (value) {
-										" . ($label_length == 0 ? "return value" : "return value.length > " . $label_length . " ? value.slice(0, " . $label_length . ") + '…' : value") . "
-									}
-								},
-								ignoreTags: ['a'],
-								validate: {
-									url: function (value) {
-										return " . $validation . ";
-									}
-								}
-							};
-							var str = '" . addslashes($text) . "';
-							document.write(linkifyHtml(str, options));
-						</script>";
+					var options = {
+						attributes: {
+							rel: 'nofollow', 
+							title: '" . $tooltip . "'
+						}, 
+						format: {
+							url: function (value) {
+								" . ($label_length == 0 ? "return value" : "return value.length > " . $label_length . " ? value.slice(0, " . $label_length . ") + '…' : value") . "
+							}
+						},
+						ignoreTags: ['a'],
+						validate: {
+							url: function (value) {
+								return " . $validation . ";
+							}
+						}
+					};
+					var str = '" . addslashes($text) . "';
+					document.write(linkifyHtml(str, options));
+				</script>";
 		}
 
 		return $content;
