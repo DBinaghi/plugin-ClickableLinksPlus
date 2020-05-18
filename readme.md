@@ -2,14 +2,14 @@
 
 ## Description
 
-Plugin for Omeka Classic. Once installed and active, URLs contained in selected elements will be turned into hyperlinks opening up in a new page (target = "_blank"). Plugin works with all valid web URLs and e-mail addresses.
+Plugin for Omeka Classic. Once installed and active, URLs contained in selected elements will be turned into hyperlinks opening up in a new page (target = "_blank"). The Plugin works with all valid web URLs and e-mail addresses.
 
 The plugin uses the free js library <a href="https://github.com/SoapBox/linkifyjs/" target="_blank">Linkify</a> for finding links in plain-text and converting them to HTML <a> tags.
 
 Settings allow to choose the elements affected by the plugin, plus whether to show a tooltip, whether to shorten the visibile URL and whether to affect only well-formatted URLs.
 
 ## Installation
-Uncompress files and rename plugin folder "EmailNotification".
+Uncompress files and rename plugin folder "ClickableLinksPlus".
 
 Then install it like any other Omeka plugin.
 
@@ -32,4 +32,4 @@ In this respect, the risks associated with loading, using, modifying and/or deve
 Copyright Daniele Binaghi, 2020
 
 ## Acknowledgments
-Many thanks to <a href="https://github.com/GerZah">Gero Zahn</a> for the idea in his original plugin <a href="https://github.com/GerZah/plugin-ClickableLinks">ClickableLinks</a>.
+Many thanks to <a href="https://github.com/GerZah" target="_blank">Gero Zahn</a> for the idea with his original plugin <a href="https://github.com/GerZah/plugin-ClickableLinks" target="_blank">ClickableLinks</a>, and to <a href="https://soapboxhq.com" target="_blank">SoapBox</a> for their <a href="https://github.com/SoapBox/linkifyjs/" target="_blank">Linkify</a> JS library.
