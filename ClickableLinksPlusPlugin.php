@@ -18,7 +18,7 @@ class ClickableLinksPLusPlugin extends Omeka_Plugin_AbstractPlugin {
 
 	public function hookInstall()
 	{
-		set_option('clickable_links_plus_title', 		'');
+		set_option('clickable_links_plus_title', 	'');
 		set_option('clickable_links_plus_label_length', '');
 		set_option('clickable_links_plus_wellformatted', 0);
 		set_option('clickable_links_plus_elements', 	serialize(array()));
