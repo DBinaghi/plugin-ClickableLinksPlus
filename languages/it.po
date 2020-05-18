@@ -1,0 +1,75 @@
+# Translation for the ClickableLinksPlus plugin for Omeka.
+# Copyright (C) 2020 Bitoteko.it
+# This file is distributed under the same license as the Omeka package.
+# Daniele Binaghi <admin@bitoteko.it>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ClickableLinksPlus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-18 14:30+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Daniele Binaghi <admin@bitoteko.it>\n"
+"Language-Team: Italian\n"
+"Language: It\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+#: config_form.php:18
+msgid "General settings"
+msgstr "Impostazioni generali"
+
+#: config_form.php:22
+msgid "Link tooltip"
+msgstr "Suggerimento link"
+
+#: config_form.php:26
+msgid ""
+"The text to be used as a tooltip for all clickable links. If blank, no tooltip will 
+"be visible."
+msgstr "
+"Il testo da usare come suggerimento per tutti i link cliccabili. Se vuoto, nessun 
+"suggerimento sarà visibile."
+
+#: config_form.php:34
+msgid "Link label length"
+msgstr "Lunghezza etichetta link"
+
+#: config_form.php:38
+msgid ""
+"Maximum number of URL's characters shown as the link's label (a minimum of 15 "
+"characters is suggested). If blank, the whole URL will be shown."
+msgstr 
+"Numero massimo di caratteri dell'URL visualizzati come etichetta del link (si "
+"suggerisce un minimo di 15 caratteri). Se vuoto, verrà mostrato l'intero URL."
+
+#: config_form.php:46
+msgid "URL format restriction"
+msgstr "Restrizione formato URL"
+
+#: config_form.php:50
+msgid ""
+"If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: "
+"http://example.com will be turned into a link, but www.example.com will not)."
+msgstr ""
+"Se selezionata, la funzionalità del plugin verrà limitata ai soli URL ben formattati "
+"(p.e.: http://example.com verrà convertito in link, mentre www.example.com no)."
+
+#: config_form.php:56
+msgid "Scope"
+msgstr "Ambito"
+
+#: config_form.php:57
+msgid "Select the elements whose URLs will be turned into clickable links (only Public side)."
+msgstr "Selezionare gli elementi i cui URL verranno convertiti in link (solo lato Pubblico)."
+
+#: config_form.php:62
+msgid "Element"
+msgstr "Elemento"
+
+#: config_form.php:63
+msgid "Active"
+msgstr "Attivo"
