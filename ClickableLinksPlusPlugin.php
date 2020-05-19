@@ -18,18 +18,20 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 
 	public function hookInstall()
 	{
-		set_option('clickable_links_plus_title', 	'');
+		set_option('clickable_links_plus_title',	'');
 		set_option('clickable_links_plus_label_length', '');
-		set_option('clickable_links_plus_wellformatted', 0);
+		set_option('clickable_links_plus_wellformatted',0);
+		set_option('clickable_links_plus_collections',	0);
 		set_option('clickable_links_plus_elements', 	serialize(array()));
 	}
 
 	public function hookUninstall()
 	{
-		delete_option('clickable_links_plus_elements');
 		delete_option('clickable_links_plus_title');
 		delete_option('clickable_links_plus_label_length');
 		delete_option('clickable_links_plus_wellformatted');
+		delete_option('clickable_links_plus_collections');
+		delete_option('clickable_links_plus_elements');
 	}
 
 	/**
@@ -41,15 +43,17 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 
 		$db = get_db();
 
-		// Add pseudo code filter to all elements
-		$sql = "
-			SELECT es.name AS e_set, e.name AS e_name
-			FROM `$db->Elements` e
-			LEFT JOIN `$db->ElementSets` es ON e.element_set_id = es.id
-		";
-		$elements = $db->fetchAll($sql);
 		$selectedElements = unserialize(get_option('clickable_links_plus_elements'));
 		if (!empty($selectedElements)) {
+			$includeCollections = get_option('clickable_links_plus_collections');
+
+			// Add pseudo code filter to all selected elements
+			$sql = "
+				SELECT es.name AS e_set, e.name AS e_name
+				FROM `$db->Elements` e
+				LEFT JOIN `$db->ElementSets` es ON e.element_set_id = es.id
+			";
+			$elements = $db->fetchAll($sql);
 			foreach ($elements as $element) {
 				if (!is_null($selectedElements[$element["e_set"]])) {
 					if (in_array($element["e_name"], $selectedElements[$element["e_set"]])) {
@@ -57,6 +61,12 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 							array("Display", "Item", $element["e_set"], $element["e_name"]),
 							array($this, "filterDisplay")
 						);
+						if ($includeCollections) {
+							add_filter(
+								array("Display", "Collection", $element["e_set"], $element["e_name"]),
+								array($this, "filterDisplay")
+							);
+						}
 					}
 				}
 			}
@@ -76,10 +86,11 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 			}
 			$elements[$elSet->name][] = $element->name;
 		}
-		set_option('clickable_links_plus_elements', 	serialize($elements));
-		set_option('clickable_links_plus_title', 	$post['clickable_links_plus_title']);
-		set_option('clickable_links_plus_wellformatted',$post['clickable_links_plus_wellformatted']);
-		set_option('clickable_links_plus_label_length',	$post['clickable_links_plus_label_length']);
+		set_option('clickable_links_plus_elements', 		serialize($elements));
+		set_option('clickable_links_plus_title', 			$post['clickable_links_plus_title']);
+		set_option('clickable_links_plus_label_length',		$post['clickable_links_plus_label_length']);
+		set_option('clickable_links_plus_wellformatted',	$post['clickable_links_plus_wellformatted']);
+		set_option('clickable_links_plus_collections',		$post['clickable_links_plus_collections']);
 	}
 
 	public function hookConfigForm()
@@ -87,8 +98,8 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		include('config_form.php');
 	}
 
-    	/**
-	 * Adds reference to Linkify js files if needed
+    /**
+	 * Adds reference to js Linkify files when needed
 	 */
 	public function hookPublicHead()
 	{
@@ -126,30 +137,29 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 			$validation = (get_option('clickable_links_plus_wellformatted') ? '/^(http|ftp)s?:\/\//.test(value)' : 'value');
 			
 			$content = "<script>
-					var options = {
-						attributes: {
-							rel: 'nofollow', 
-							title: '" . $tooltip . "'
-						}, 
-						format: {
-							url: function (value) {
-								" . ($label_length == 0 ? "return value" : "return value.length > " . $label_length . " ? value.slice(0, " . $label_length . ") + '…' : value") . "
-							}
-						},
-						ignoreTags: ['a'],
-						validate: {
-							url: function (value) {
-								return " . $validation . ";
-							}
+				var options = {
+					attributes: {
+						rel: 'nofollow', 
+						title: '" . $tooltip . "'
+					}, 
+					format: {
+						url: function (value) {
+							" . ($label_length == 0 ? "return value" : "return value.length > " . $label_length . " ? value.slice(0, " . $label_length . ") + '…' : value") . "
 						}
-					};
-					var str = '" . addslashes($text) . "';
-					document.write(linkifyHtml(str, options));
-				</script>";
+					},
+					ignoreTags: ['a'],
+					validate: {
+						url: function (value) {
+							return " . $validation . ";
+						}
+					}
+				};
+				var str = '" . addslashes($text) . "';
+				document.write(linkifyHtml(str, options));
+			</script>";
 		}
 
 		return $content;
 	}
-
 }
 ?>
