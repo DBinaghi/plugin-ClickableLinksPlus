@@ -18,50 +18,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 
-#: config_form.php:18
+#: config_form.php:19
 msgid "General settings"
 msgstr ""
 
-#: config_form.php:22
+#: config_form.php:23
 msgid "Link tooltip"
 msgstr ""
 
-#: config_form.php:26
+#: config_form.php:27
 msgid "The text to be used as a tooltip for all clickable links. If blank, no tooltip will be visible."
 msgstr ""
 
-#: config_form.php:34
+#: config_form.php:35
 msgid "Link label length"
 msgstr ""
 
-#: config_form.php:38
+#: config_form.php:39
 msgid ""
 "Maximum number of URL's characters shown as the link's label (a minimum of 15 "
 "characters is suggested). If blank, the whole URL will be shown."
 msgstr ""
 
-#: config_form.php:46
+#: config_form.php:47
 msgid "URL format restriction"
 msgstr ""
 
-#: config_form.php:50
+#: config_form.php:51
 msgid ""
 "If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: "
 "http://example.com will be turned into a link, but www.example.com will not)."
 msgstr ""
 
-#: config_form.php:56
-msgid "Scope"
-msgstr ""
-
-#: config_form.php:57
-msgid "Select the elements whose URLs will be turned into clickable links (only Public side)."
-msgstr ""
-
-#: config_form.php:62
-msgid "Element"
+#: config_form.php:59
+msgid "Include collections"
 msgstr ""
 
 #: config_form.php:63
+msgid "If checked, plugin functionality will be extended to Collections pages."
+msgstr ""
+
+#: config_form.php:69
+msgid "Scope"
+msgstr ""
+
+#: config_form.php:70
+msgid "Select the elements whose URLs will be turned into clickable links (only Public side)."
+msgstr ""
+
+#: config_form.php:75
+msgid "Element"
+msgstr ""
+
+#: config_form.php:76
 msgid "Active"
 msgstr ""

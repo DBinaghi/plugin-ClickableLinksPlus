@@ -18,27 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 
-#: config_form.php:18
+#: config_form.php:19
 msgid "General settings"
 msgstr "Impostazioni generali"
 
-#: config_form.php:22
+#: config_form.php:23
 msgid "Link tooltip"
 msgstr "Suggerimento link"
 
-#: config_form.php:26
+#: config_form.php:27
 msgid ""
-"The text to be used as a tooltip for all clickable links. If blank, no tooltip will 
+"The text to be used as a tooltip for all clickable links. If blank, no tooltip will "
 "be visible."
 msgstr "
-"Il testo da usare come suggerimento per tutti i link cliccabili. Se vuoto, nessun 
+"Il testo da usare come suggerimento per tutti i link cliccabili. Se vuoto, nessun "
 "suggerimento sarà visibile."
 
-#: config_form.php:34
+#: config_form.php:35
 msgid "Link label length"
 msgstr "Lunghezza etichetta link"
 
-#: config_form.php:38
+#: config_form.php:39
 msgid ""
 "Maximum number of URL's characters shown as the link's label (a minimum of 15 "
 "characters is suggested). If blank, the whole URL will be shown."
@@ -46,30 +46,39 @@ msgstr
 "Numero massimo di caratteri dell'URL visualizzati come etichetta del link (si "
 "suggerisce un minimo di 15 caratteri). Se vuoto, verrà mostrato l'intero URL."
 
-#: config_form.php:46
+#: config_form.php:47
 msgid "URL format restriction"
 msgstr "Restrizione formato URL"
 
-#: config_form.php:50
+#: config_form.php:51
 msgid ""
 "If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: "
 "http://example.com will be turned into a link, but www.example.com will not)."
 msgstr ""
-"Se selezionata, la funzionalità del plugin verrà limitata ai soli URL ben formattati "
+"Se selezionata, le funzionalità del plugin verranno limitate ai soli URL ben formattati "
 "(p.e.: http://example.com verrà convertito in link, mentre www.example.com no)."
 
-#: config_form.php:56
+#: config_form.php:59
+msgid "Include collections"
+msgstr "Included collezioni"
+
+#: config_form.php:63
+msgid "If checked, plugin functionality will be extended to Collections pages."
+msgstr "Se selezionata, le funzionalità del plugin verranno estese alle pagine delle "
+"collezioni."
+
+#: config_form.php:69
 msgid "Scope"
 msgstr "Ambito"
 
-#: config_form.php:57
+#: config_form.php:70
 msgid "Select the elements whose URLs will be turned into clickable links (only Public side)."
 msgstr "Selezionare gli elementi i cui URL verranno convertiti in link (solo lato Pubblico)."
 
-#: config_form.php:62
+#: config_form.php:65
 msgid "Element"
 msgstr "Elemento"
 
-#: config_form.php:63
+#: config_form.php:66
 msgid "Active"
 msgstr "Attivo"
