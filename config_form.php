@@ -2,6 +2,7 @@
 	$clickable_links_plus_title 		= get_option('clickable_links_plus_title');
 	$clickable_links_plus_label_length	= get_option('clickable_links_plus_label_length');
 	$clickable_links_plus_wellformatted	= get_option('clickable_links_plus_wellformatted');
+	$clickable_links_plus_collections	= get_option('clickable_links_plus_collections');
 
 	$db = get_db();
 	$sql = "
@@ -50,6 +51,18 @@
 			<?php echo __('If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: http://example.com will be turned into a link, but www.example.com will not).'); ?>
 		</p>
 		<?php echo $view->formCheckbox('clickable_links_plus_wellformatted', $clickable_links_plus_wellformatted, null, array('1', '0')); ?>
+	</div>
+</div>
+
+<div class="field">
+	<div class="two columns alpha">
+		<?php echo $view->formLabel('clickable_links_plus_collections', __('Include collections')); ?>
+	</div>
+	<div class="inputs five columns omega">
+		<p class="explanation">
+			<?php echo __('If checked, plugin functionality will be extended to Collections pages.'); ?>
+		</p>
+		<?php echo $view->formCheckbox('clickable_links_plus_collections', $clickable_links_plus_collections, null, array('1', '0')); ?>
 	</div>
 </div>
 
