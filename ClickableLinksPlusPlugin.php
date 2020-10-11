@@ -55,7 +55,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 			";
 			$elements = $db->fetchAll($sql);
 			foreach ($elements as $element) {
-				if (!is_null($selectedElements[$element["e_set"]])) {
+				if (isset($selectedElements[$element["e_set"]])) {
 					if (in_array($element["e_name"], $selectedElements[$element["e_set"]])) {
 						add_filter(
 							array("Display", "Item", $element["e_set"], $element["e_name"]),
