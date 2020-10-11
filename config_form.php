@@ -84,7 +84,7 @@
 		$e_name = $element['e_name'];
 		$es_name = $element['es_name'];
 		$e_id = $element['e_id'];
-		if (!is_null($selectedElements[$es_name])) {
+		if (isset($selectedElements[$es_name])) {
 			$value = (in_array($e_name, $selectedElements[$es_name]) ? $e_id : 0);
 		}
 		
@@ -94,7 +94,7 @@
 		<tr>
 			<th colspan="2" style="font-weight: bold"><?php echo Inflector::humanize(__($es_name), 'all'); ?></th>
 		</tr>
-<?php 	endif; ?>
+<?php 		endif; ?>
 		<tr>
 			<td><?php echo __($e_name); ?></td>
 			<td style="text-align: center"><?php echo $view->formCheckbox('element_sets[]', $value, array('id'=>'element_sets-' . $e_id), array($e_id, '0')); ?></td>
