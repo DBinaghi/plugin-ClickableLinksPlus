@@ -60,7 +60,7 @@ msgstr ""
 
 #: config_form.php:59
 msgid "Include collections"
-msgstr "Included collezioni"
+msgstr "Includere collezioni"
 
 #: config_form.php:63
 msgid "If checked, plugin functionality will be extended to Collections pages."
