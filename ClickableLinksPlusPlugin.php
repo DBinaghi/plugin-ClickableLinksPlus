@@ -18,11 +18,12 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 
 	public function hookInstall()
 	{
-		set_option('clickable_links_plus_title',	'');
+		set_option('clickable_links_plus_title', '');
 		set_option('clickable_links_plus_label_length', '');
 		set_option('clickable_links_plus_wellformatted',0);
 		set_option('clickable_links_plus_collections',	0);
-		set_option('clickable_links_plus_elements', 	serialize(array()));
+		set_option('clickable_links_plus_externallinkicon',	0);
+		set_option('clickable_links_plus_elements', serialize(array()));
 	}
 
 	public function hookUninstall()
@@ -31,6 +32,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		delete_option('clickable_links_plus_label_length');
 		delete_option('clickable_links_plus_wellformatted');
 		delete_option('clickable_links_plus_collections');
+		delete_option('clickable_links_plus_externallinkicon');
 		delete_option('clickable_links_plus_elements');
 	}
 
@@ -91,6 +93,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		set_option('clickable_links_plus_label_length',		$post['clickable_links_plus_label_length']);
 		set_option('clickable_links_plus_wellformatted',	$post['clickable_links_plus_wellformatted']);
 		set_option('clickable_links_plus_collections',		$post['clickable_links_plus_collections']);
+		set_option('clickable_links_plus_externallinkicon',	$post['clickable_links_plus_externallinkicon']);
 	}
 
 	public function hookConfigForm()
@@ -108,6 +111,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 			queue_js_file('linkifyjs/linkify-polyfill');
 			queue_js_file('linkifyjs/linkify');
 			queue_js_file('linkifyjs/linkify-html');
+			queue_css_file('clickable_links_plus');
 		}
 	}
 
@@ -132,16 +136,26 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 			
 			// checks if any default tooltip title has been provided
 			$tooltip = str_replace(array('\'', '"'), '', get_option('clickable_links_plus_title'));
+			if ($tooltip == '') $tooltip = __('click to open');
 			
 			// checks if only well-formatted URL can be turned into links
 			$validation = (get_option('clickable_links_plus_wellformatted') ? '/^(http|ftp)s?:\/\//.test(value)' : 'value');
 			
+			// checks if icon has to be added to link
+			if (get_option('clickable_links_plus_externallinkicon')) {
+				$url_data = $this->parseURL($text);
+				$class = $url_data['class'];
+			} else {
+				$class = '';
+			}
+
 			$content = "<script>
 				var options = {
 					attributes: {
 						rel: 'nofollow', 
-						title: '" . $tooltip . "'
-					}, 
+						title: '" . $tooltip . "',
+					},
+					className: '" . $class . "',
 					format: {
 						url: function (value) {
 							" . ($label_length == 0 ? "return value" : "return value.length > " . $label_length . " ? value.slice(0, " . $label_length . ") + '…' : value") . "
@@ -160,6 +174,47 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		}
 
 		return $content;
+	}
+	
+	/**
+	 * Parses URL to see whether it is an internal or external one
+	 * Returns class and target too
+	 * 
+	 * Source: https://stackoverflow.com/questions/25090563/php-determine-if-a-url-is-an-internal-or-external-url
+	 */
+	private function parseURL($url = '', $internal_class = 'internal-link', $external_class = 'external-link')
+	{
+		// Abort if parameter URL is empty
+		if( empty($url) ) {
+			return null;
+		}
+
+		// Parse home URL and parameter URL
+		$link_url = parse_url($url);
+		$home_url = parse_url($_SERVER['HTTP_HOST']);
+
+		// Decide on target
+		if (empty($link_url['host'])) {
+			// Is an internal link
+			$target = '_self';
+			$class = $internal_class;
+		} elseif ($link_url['host'] == $home_url['host'] || $link_url['host'] == $home_url['path']) {
+			// Is an internal link
+			$target = '_self';
+			$class = $internal_class;
+		} else {
+			// Is an external link
+			$target = '_blank';
+			$class = $external_class;
+		}
+
+		// Return array
+		$output = array(
+			'class'     => $class,
+			'target'    => $target,
+			'url'       => $url
+		);
+		return $output;
 	}
 }
 ?>
