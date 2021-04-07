@@ -8,6 +8,8 @@ The plugin uses the free js library <a href="https://github.com/SoapBox/linkifyj
 
 Settings allow to choose the elements affected by the plugin, plus whether to show a tooltip, whether to shorten the visibile URL and whether to affect only well-formatted URLs. Functionality can be extended to Collections pages.
 
+Version 1.3: new option to add "wikipedia-style" icon to external links.
+
 ## Installation
 Uncompress files and rename plugin folder "ClickableLinksPlus".
 
