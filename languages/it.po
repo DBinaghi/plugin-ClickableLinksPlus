@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: ClickableLinksPlus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-18 14:30+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2021-04-07 18:38+0200\n"
 "Last-Translator: Daniele Binaghi <admin@bitoteko.it>\n"
 "Language-Team: Italian\n"
 "Language: It\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 
-#: config_form.php:19
+#: config_form.php:20
 msgid "General settings"
 msgstr "Impostazioni generali"
 
-#: config_form.php:23
+#: config_form.php:24
 msgid "Link tooltip"
 msgstr "Suggerimento link"
 
-#: config_form.php:27
+#: config_form.php:28
 msgid ""
 "The text to be used as a tooltip for all clickable links. If blank, no tooltip will "
 "be visible."
@@ -34,11 +34,11 @@ msgstr "
 "Il testo da usare come suggerimento per tutti i link cliccabili. Se vuoto, nessun "
 "suggerimento sarà visibile."
 
-#: config_form.php:35
+#: config_form.php:36
 msgid "Link label length"
 msgstr "Lunghezza etichetta link"
 
-#: config_form.php:39
+#: config_form.php:40
 msgid ""
 "Maximum number of URL's characters shown as the link's label (a minimum of 15 "
 "characters is suggested). If blank, the whole URL will be shown."
@@ -46,11 +46,11 @@ msgstr
 "Numero massimo di caratteri dell'URL visualizzati come etichetta del link (si "
 "suggerisce un minimo di 15 caratteri). Se vuoto, verrà mostrato l'intero URL."
 
-#: config_form.php:47
+#: config_form.php:48
 msgid "URL format restriction"
 msgstr "Restrizione formato URL"
 
-#: config_form.php:51
+#: config_form.php:52
 msgid ""
 "If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: "
 "http://example.com will be turned into a link, but www.example.com will not)."
@@ -58,27 +58,35 @@ msgstr ""
 "Se selezionata, le funzionalità del plugin verranno limitate ai soli URL ben formattati "
 "(p.e.: http://example.com verrà convertito in link, mentre www.example.com no)."
 
-#: config_form.php:59
+#: config_form.php:60
 msgid "Include collections"
 msgstr "Includere collezioni"
 
-#: config_form.php:63
+#: config_form.php:64
 msgid "If checked, plugin functionality will be extended to Collections pages."
 msgstr "Se selezionata, le funzionalità del plugin verranno estese alle pagine delle "
 "collezioni."
 
-#: config_form.php:69
+#: config_form.php:72
+msgid "External link icon"
+msgstr "Icona link esterni"
+
+#: config_form.php:76
+msgid "If checked, an icon is added to all external links."
+msgstr "Se selezionata, un'icona è aggiunta a tutti i link esterni"
+
+#: config_form.php:82
 msgid "Scope"
 msgstr "Ambito"
 
-#: config_form.php:70
+#: config_form.php:83
 msgid "Select the elements whose URLs will be turned into clickable links (only Public side)."
 msgstr "Selezionare gli elementi i cui URL verranno convertiti in link (solo lato Pubblico)."
 
-#: config_form.php:65
+#: config_form.php:88
 msgid "Element"
 msgstr "Elemento"
 
-#: config_form.php:66
+#: config_form.php:89
 msgid "Active"
 msgstr "Attivo"
