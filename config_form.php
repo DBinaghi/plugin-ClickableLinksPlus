@@ -1,8 +1,9 @@
 <?php
-	$clickable_links_plus_title 		= get_option('clickable_links_plus_title');
-	$clickable_links_plus_label_length	= get_option('clickable_links_plus_label_length');
-	$clickable_links_plus_wellformatted	= get_option('clickable_links_plus_wellformatted');
-	$clickable_links_plus_collections	= get_option('clickable_links_plus_collections');
+	$clickable_links_plus_title 			= get_option('clickable_links_plus_title');
+	$clickable_links_plus_label_length		= get_option('clickable_links_plus_label_length');
+	$clickable_links_plus_wellformatted		= get_option('clickable_links_plus_wellformatted');
+	$clickable_links_plus_collections		= get_option('clickable_links_plus_collections');
+	$clickable_links_plus_externallinkicon 	= get_option('clickable_links_plus_externallinkicon');
 
 	$db = get_db();
 	$sql = "
@@ -66,6 +67,18 @@
 	</div>
 </div>
 
+<div class="field">
+    <div class="two columns alpha">
+        <?php echo $view->formLabel('clickable_links_plus_externallinkicon', __('External link icon')); ?>
+    </div>
+    <div class="inputs five columns omega">
+        <p class="explanation">
+			<?php echo __('If checked, an icon is added to all external links.'); ?>
+		</p>
+        <?php echo $view->formCheckbox('clickable_links_plus_externallinkicon', $clickable_links_plus_externallinkicon, null, array('1', '0')); ?>
+    </div>
+</div>
+
 <h2><?php echo __('Scope'); ?></h2>
 <p><?php echo __('Select the elements whose URLs will be turned into clickable links (only Public side).'); ?></p>
 
@@ -94,7 +107,7 @@
 		<tr>
 			<th colspan="2" style="font-weight: bold"><?php echo Inflector::humanize(__($es_name), 'all'); ?></th>
 		</tr>
-<?php 		endif; ?>
+<?php 	endif; ?>
 		<tr>
 			<td><?php echo __($e_name); ?></td>
 			<td style="text-align: center"><?php echo $view->formCheckbox('element_sets[]', $value, array('id'=>'element_sets-' . $e_id), array($e_id, '0')); ?></td>
