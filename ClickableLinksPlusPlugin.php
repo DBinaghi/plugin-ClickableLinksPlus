@@ -194,7 +194,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		$home_url = parse_url($_SERVER['HTTP_HOST']);
 
 		// Decide on target
-		if (empty($link_url['host'])) {
+		if (empty($link_url['host']) || empty($home_url['host'])) {
 			// Is an internal link
 			$target = '_self';
 			$class = $internal_class;
