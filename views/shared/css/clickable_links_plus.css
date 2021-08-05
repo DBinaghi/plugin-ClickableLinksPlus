@@ -1,5 +1,5 @@
 a.external-link:after {
-	content: url('../pictures/Icon_External_Link.png'); 
+	content: url('../images/Icon_External_Link.png'); 
 	margin: 0 0 0 5px;
 	border-bottom: none;
 }
