@@ -3,6 +3,7 @@
 	$clickable_links_plus_label_length		= get_option('clickable_links_plus_label_length');
 	$clickable_links_plus_wellformatted		= get_option('clickable_links_plus_wellformatted');
 	$clickable_links_plus_collections		= get_option('clickable_links_plus_collections');
+	$clickable_links_plus_exhibits			= get_option('clickable_links_plus_exhibits');
 	$clickable_links_plus_externallinkicon 	= get_option('clickable_links_plus_externallinkicon');
 
 	$db = get_db();
@@ -21,7 +22,7 @@
 
  <div class="field">
 	<div class="two columns alpha">
-		<?php echo $view->formLabel('clickable_links_plus_title', __('Link tooltip')); ?>
+		<?php echo $view->formLabel('clickable_links_plus_title', __('Link Tooltip')); ?>
 	</div>
 	<div class="inputs five columns omega">
 		<p class="explanation">
@@ -33,7 +34,7 @@
 
  <div class="field">
 	<div class="two columns alpha">
-		<?php echo $view->formLabel('clickable_links_plus_label_length', __('Link label length')); ?>
+		<?php echo $view->formLabel('clickable_links_plus_label_length', __('Link Label Length')); ?>
 	</div>
 	<div class="inputs five columns omega">
 		<p class="explanation">
@@ -45,7 +46,7 @@
 
  <div class="field">
 	<div class="two columns alpha">
-		<?php echo $view->formLabel('clickable_links_plus_wellformatted', __('URL format restriction')); ?>
+		<?php echo $view->formLabel('clickable_links_plus_wellformatted', __('URL Format Restriction')); ?>
 	</div>
 	<div class="inputs five columns omega">
 		<p class="explanation">
@@ -57,7 +58,7 @@
 
 <div class="field">
 	<div class="two columns alpha">
-		<?php echo $view->formLabel('clickable_links_plus_collections', __('Include collections')); ?>
+		<?php echo $view->formLabel('clickable_links_plus_collections', __('Include Collections')); ?>
 	</div>
 	<div class="inputs five columns omega">
 		<p class="explanation">
@@ -67,9 +68,38 @@
 	</div>
 </div>
 
+<?php if (plugin_is_active('ExhibitBuilder')): ?>
+
+<div class="field">
+	<div class="two columns alpha">
+		<?php echo $view->formLabel('clickable_links_plus_exhibits', __('Include Exhibits')); ?>
+	</div>
+	<div class="inputs five columns omega">
+		<p class="explanation">
+			<?php echo __('If checked, plugin functionality will be extended to Exhibit pages.'); ?>
+		</p>
+		<?php echo $view->formCheckbox('clickable_links_plus_exhibits', $clickable_links_plus_exhibits, null, array('1', '0')); ?>
+	</div>
+</div>
+
+<?php else: ?>
+
+<div class="field">
+	<div class="two columns alpha">
+		<?php echo $view->formLabel('clickable_links_plus_exhibits', __('Plugin Unavailable')); ?>
+	</div>
+	<div class="inputs five columns omega">
+		<p class="explanation">
+			<?php echo __('The Exhibit Builder plugin is not installed or active. Install and activate the plugin in order to be able to configure this plugin for Exhibits.'); ?>
+		</p>
+	</div>
+</div>
+	
+<?php endif; ?>
+
 <div class="field">
     <div class="two columns alpha">
-        <?php echo $view->formLabel('clickable_links_plus_externallinkicon', __('External link icon')); ?>
+        <?php echo $view->formLabel('clickable_links_plus_externallinkicon', __('External Link Icon')); ?>
     </div>
     <div class="inputs five columns omega">
         <p class="explanation">
