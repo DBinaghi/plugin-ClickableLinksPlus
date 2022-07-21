@@ -2,13 +2,14 @@
 
 ## Description
 
-Plugin for Omeka Classic. Once installed and active, URLs contained in selected elements will be turned into hyperlinks opening up in a new page (target = "_blank"). The Plugin works with all valid web URLs and e-mail addresses.
+Plugin for Omeka Classic. Once installed and active, URLs contained in selected elements will be turned into hyperlinks opening up (in a new page, if external). The Plugin works with all valid web URLs and e-mail addresses.
 
 The plugin uses the free js library <a href="https://github.com/SoapBox/linkifyjs/" target="_blank">Linkify</a> for finding links in plain-text and converting them to HTML tags.
 
 Settings allow to choose the elements affected by the plugin, plus whether to show a tooltip, whether to shorten the visibile URL and whether to affect only well-formatted URLs. Functionality can be extended to Collections pages.
 
 Version 1.3: new option to add "wikipedia-style" icon to external links.
+Version 1.4: new option to use the plugin also for Exhibits.
 
 ## Installation
 Uncompress files and rename plugin folder "ClickableLinksPlus".
