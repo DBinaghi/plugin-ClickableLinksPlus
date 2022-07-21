@@ -1,5 +1,5 @@
 # Translation for the ClickableLinksPlus plugin for Omeka.
-# Copyright (C) 2020 Bitoteko.it
+# Copyright (C) 2020-2022 Bitoteko.it
 # This file is distributed under the same license as the Omeka package.
 # Daniele Binaghi <admin@bitoteko.it>, 2020.
 #
@@ -10,6 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-18 14:30+0200\n"
 "PO-Revision-Date: 2021-04-07 18:38+0200\n"
+"PO-Revision-Date: 2022-07-21 13:07+0200\n"
 "Last-Translator: Daniele Binaghi <admin@bitoteko.it>\n"
 "Language-Team: Italian\n"
 "Language: It\n"
@@ -18,15 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 
-#: config_form.php:20
+#: config_form.php:21
 msgid "General settings"
 msgstr "Impostazioni generali"
 
-#: config_form.php:24
-msgid "Link tooltip"
+#: config_form.php:25
+msgid "Link Tooltip"
 msgstr "Suggerimento link"
 
-#: config_form.php:28
+#: config_form.php:29
 msgid ""
 "The text to be used as a tooltip for all clickable links. If blank, no tooltip will "
 "be visible."
@@ -34,11 +35,11 @@ msgstr "
 "Il testo da usare come suggerimento per tutti i link cliccabili. Se vuoto, nessun "
 "suggerimento sarà visibile."
 
-#: config_form.php:36
-msgid "Link label length"
+#: config_form.php:37
+msgid "Link Label Length"
 msgstr "Lunghezza etichetta link"
 
-#: config_form.php:40
+#: config_form.php:41
 msgid ""
 "Maximum number of URL's characters shown as the link's label (a minimum of 15 "
 "characters is suggested). If blank, the whole URL will be shown."
@@ -46,11 +47,11 @@ msgstr
 "Numero massimo di caratteri dell'URL visualizzati come etichetta del link (si "
 "suggerisce un minimo di 15 caratteri). Se vuoto, verrà mostrato l'intero URL."
 
-#: config_form.php:48
-msgid "URL format restriction"
+#: config_form.php:49
+msgid "URL Format Restriction"
 msgstr "Restrizione formato URL"
 
-#: config_form.php:52
+#: config_form.php:53
 msgid ""
 "If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: "
 "http://example.com will be turned into a link, but www.example.com will not)."
@@ -58,35 +59,54 @@ msgstr ""
 "Se selezionata, le funzionalità del plugin verranno limitate ai soli URL ben formattati "
 "(p.e.: http://example.com verrà convertito in link, mentre www.example.com no)."
 
-#: config_form.php:60
-msgid "Include collections"
+#: config_form.php:61
+msgid "Include Collections"
 msgstr "Includere collezioni"
 
-#: config_form.php:64
+#: config_form.php:65
 msgid "If checked, plugin functionality will be extended to Collections pages."
 msgstr "Se selezionata, le funzionalità del plugin verranno estese alle pagine delle "
 "collezioni."
 
-#: config_form.php:72
-msgid "External link icon"
+#: config_form.php:75
+msgid "Include Exhibits"
+msgstr "Includere esposizioni"
+
+#: config_form.php:79
+msgid "If checked, plugin functionality will be extended to Exhibits pages."
+msgstr "Se selezionata, le funzionalità del plugin verranno estese alle pagine delle "
+"esposizioni."
+
+#: config_form.php:89
+msgid "Plugin Unavailable"
+msgstr "Plugin non disponibile"
+
+#: config_form.php:93
+msgid "The Exhibit Builder plugin is not installed or active. Install and activate the plugin "
+"in order to be able to configure this plugin for Exhibits."
+msgstr "Il plugin Exhibit Builder non è installato o attivo. Installare ed attivare il plugin "
+"per poter configurare questo plugin per le esposizioni."
+
+#: config_form.php:102
+msgid "External Link Icon"
 msgstr "Icona link esterni"
 
-#: config_form.php:76
+#: config_form.php:106
 msgid "If checked, an icon is added to all external links."
 msgstr "Se selezionata, un'icona è aggiunta a tutti i link esterni"
 
-#: config_form.php:82
+#: config_form.php:112
 msgid "Scope"
 msgstr "Ambito"
 
-#: config_form.php:83
+#: config_form.php:113
 msgid "Select the elements whose URLs will be turned into clickable links (only Public side)."
 msgstr "Selezionare gli elementi i cui URL verranno convertiti in link (solo lato Pubblico)."
 
-#: config_form.php:88
+#: config_form.php:118
 msgid "Element"
 msgstr "Elemento"
 
-#: config_form.php:89
+#: config_form.php:119
 msgid "Active"
 msgstr "Attivo"
