@@ -22,6 +22,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		set_option('clickable_links_plus_label_length', '');
 		set_option('clickable_links_plus_wellformatted',0);
 		set_option('clickable_links_plus_collections',	0);
+		set_option('clickable_links_plus_exhibits',	0);
 		set_option('clickable_links_plus_externallinkicon',	0);
 		set_option('clickable_links_plus_elements', serialize(array()));
 	}
@@ -32,6 +33,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		delete_option('clickable_links_plus_label_length');
 		delete_option('clickable_links_plus_wellformatted');
 		delete_option('clickable_links_plus_collections');
+		delete_option('clickable_links_plus_exhibits');
 		delete_option('clickable_links_plus_externallinkicon');
 		delete_option('clickable_links_plus_elements');
 	}
@@ -48,6 +50,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		$selectedElements = unserialize(get_option('clickable_links_plus_elements'));
 		if (!empty($selectedElements)) {
 			$includeCollections = get_option('clickable_links_plus_collections');
+			$includeExhibits = get_option('clickable_links_plus_exhibits');
 
 			// Add pseudo code filter to all selected elements
 			$sql = "
@@ -66,6 +69,12 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 						if ($includeCollections) {
 							add_filter(
 								array("Display", "Collection", $element["e_set"], $element["e_name"]),
+								array($this, "filterDisplay")
+							);
+						}
+						if ($includeExhibits) {
+							add_filter(
+								array("Display", "Exhibit", $element["e_set"], $element["e_name"]),
 								array($this, "filterDisplay")
 							);
 						}
@@ -93,6 +102,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		set_option('clickable_links_plus_label_length',		$post['clickable_links_plus_label_length']);
 		set_option('clickable_links_plus_wellformatted',	$post['clickable_links_plus_wellformatted']);
 		set_option('clickable_links_plus_collections',		$post['clickable_links_plus_collections']);
+		set_option('clickable_links_plus_exhibits',			$post['clickable_links_plus_exhibits']);
 		set_option('clickable_links_plus_externallinkicon',	$post['clickable_links_plus_externallinkicon']);
 	}
 
