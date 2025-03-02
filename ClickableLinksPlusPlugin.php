@@ -178,7 +178,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 						}
 					}
 				};
-				var str = '" . addslashes($text) . "';
+				var str = `" . addslashes($text) . "`;
 				document.write(linkifyHtml(str, options));
 			</script>";
 		}
