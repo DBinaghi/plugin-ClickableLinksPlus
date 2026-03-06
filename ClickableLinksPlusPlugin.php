@@ -20,11 +20,11 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 	{
 		set_option('clickable_links_plus_title', '');
 		set_option('clickable_links_plus_label_length', '');
-		set_option('clickable_links_plus_wellformatted',0);
-		set_option('clickable_links_plus_collections',	0);
-		set_option('clickable_links_plus_exhibits',	0);
-		set_option('clickable_links_plus_externallinkicon',	0);
-		set_option('clickable_links_plus_elements', serialize(array()));
+		set_option('clickable_links_plus_wellformatted', 0);
+		set_option('clickable_links_plus_collections', 0);
+		set_option('clickable_links_plus_exhibits', 0);
+		set_option('clickable_links_plus_externallinkicon', 0);
+		set_option('clickable_links_plus_elements', json_encode(array()));
 	}
 
 	public function hookUninstall()
@@ -45,10 +45,15 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 	{
 		add_translation_source(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'languages');
 
-		$db = get_db();
+		$raw = get_option('clickable_links_plus_elements');
+		if ($raw && strpos($raw, 'a:') === 0) {
+			$migrated = unserialize($raw);
+			set_option('clickable_links_plus_elements', json_encode($migrated ?: array()));
+		}
+		$selectedElements = json_decode(get_option('clickable_links_plus_elements'), true) ?: array();
 
-		$selectedElements = unserialize(get_option('clickable_links_plus_elements'));
 		if (!empty($selectedElements)) {
+			$db = get_db();
 			$includeCollections = get_option('clickable_links_plus_collections');
 			$includeExhibits = get_option('clickable_links_plus_exhibits');
 
@@ -97,13 +102,13 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 			}
 			$elements[$elSet->name][] = $element->name;
 		}
-		set_option('clickable_links_plus_elements', 		serialize($elements));
+		set_option('clickable_links_plus_elements', 		json_encode($elements));
 		set_option('clickable_links_plus_title', 			$post['clickable_links_plus_title']);
-		set_option('clickable_links_plus_label_length',		$post['clickable_links_plus_label_length']);
-		set_option('clickable_links_plus_wellformatted',	$post['clickable_links_plus_wellformatted']);
-		set_option('clickable_links_plus_collections',		$post['clickable_links_plus_collections']);
-		set_option('clickable_links_plus_exhibits',			$post['clickable_links_plus_exhibits']);
-		set_option('clickable_links_plus_externallinkicon',	$post['clickable_links_plus_externallinkicon']);
+		set_option('clickable_links_plus_label_length', 	$post['clickable_links_plus_label_length']);
+		set_option('clickable_links_plus_wellformatted',    (int)$post['clickable_links_plus_wellformatted']);
+		set_option('clickable_links_plus_collections',      (int)$post['clickable_links_plus_collections']);
+		set_option('clickable_links_plus_exhibits',         (int)$post['clickable_links_plus_exhibits']);
+		set_option('clickable_links_plus_externallinkicon', (int)$post['clickable_links_plus_externallinkicon']);
 	}
 
 	public function hookConfigForm()
@@ -111,12 +116,12 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 		include('config_form.php');
 	}
 
-    /**
+	/**
 	 * Adds reference to js Linkify files when needed
 	 */
 	public function hookPublicHead()
 	{
-		$selectedElements = unserialize(get_option('clickable_links_plus_elements'));
+		$selectedElements = json_decode(get_option('clickable_links_plus_elements'), true) ?: array();
 		if (!empty($selectedElements)) {
 			queue_js_file('linkifyjs/linkify-polyfill');
 			queue_js_file('linkifyjs/linkify');
@@ -136,7 +141,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 			return $content;
 		}
 
-		// make sure to leave html fields add_translation_source
+		// make sure to leave html fields untouched
 		$isHtml = $args["element_text"]["html"];
 
 		if (!$isHtml) {
@@ -159,6 +164,8 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 				$class = '';
 			}
 
+			$escaped = addslashes(str_replace('`', '\`', $text));
+
 			$content = "<script>
 				var options = {
 					attributes: {
@@ -178,7 +185,7 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 						}
 					}
 				};
-				var str = `" . addslashes($text) . "`;
+				var str = `" . $escaped . "`;
 				document.write(linkifyHtml(str, options));
 			</script>";
 		}
@@ -195,13 +202,13 @@ class ClickableLinksPlusPlugin extends Omeka_Plugin_AbstractPlugin {
 	private function parseURL($url = '', $internal_class = 'internal-link', $external_class = 'external-link')
 	{
 		// Abort if parameter URL is empty
-		if( empty($url) ) {
+		if (empty($url)) {
 			return null;
 		}
 
 		// Parse home URL and parameter URL
 		$link_url = parse_url($url);
-		$home_url = parse_url($_SERVER['HTTP_HOST']);
+		$home_url = parse_url('http://' . $_SERVER['HTTP_HOST']);
 
 		// Decide on target
 		if (empty($link_url['host']) || empty($home_url['host'])) {
