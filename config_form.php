@@ -14,7 +14,7 @@
 		ORDER BY es.id, e.id
 	";
 	$elements = $db->fetchAll($sql);
-	$selectedElements = unserialize(get_option('clickable_links_plus_elements'));
+	$selectedElements = json_decode(get_option('clickable_links_plus_elements'), true) ?: array();
 	$view = get_view();
 ?>
 
@@ -52,7 +52,7 @@
 		<p class="explanation">
 			<?php echo __('If checked, plugin functionality will be limited only to well-formatted URLs (e.g.: http://example.com will be turned into a link, but www.example.com will not).'); ?>
 		</p>
-		<?php echo $view->formCheckbox('clickable_links_plus_wellformatted', $clickable_links_plus_wellformatted, null, array('1', '0')); ?>
+		<?php echo $view->formCheckbox('clickable_links_plus_wellformatted', $clickable_links_plus_wellformatted, null, array(1, 0)); ?>
 	</div>
 </div>
 
@@ -64,7 +64,7 @@
 		<p class="explanation">
 			<?php echo __('If checked, plugin functionality will be extended to Collections pages.'); ?>
 		</p>
-		<?php echo $view->formCheckbox('clickable_links_plus_collections', $clickable_links_plus_collections, null, array('1', '0')); ?>
+		<?php echo $view->formCheckbox('clickable_links_plus_collections', $clickable_links_plus_collections, null, array(1, 0)); ?>
 	</div>
 </div>
 
@@ -78,7 +78,7 @@
 		<p class="explanation">
 			<?php echo __('If checked, plugin functionality will be extended to Exhibit pages.'); ?>
 		</p>
-		<?php echo $view->formCheckbox('clickable_links_plus_exhibits', $clickable_links_plus_exhibits, null, array('1', '0')); ?>
+		<?php echo $view->formCheckbox('clickable_links_plus_exhibits', $clickable_links_plus_exhibits, null, array(1, 0)); ?>
 	</div>
 </div>
 
@@ -105,7 +105,7 @@
         <p class="explanation">
 			<?php echo __('If checked, an icon is added to all external links.'); ?>
 		</p>
-        <?php echo $view->formCheckbox('clickable_links_plus_externallinkicon', $clickable_links_plus_externallinkicon, null, array('1', '0')); ?>
+		<?php echo $view->formCheckbox('clickable_links_plus_externallinkicon', $clickable_links_plus_externallinkicon, null, array(1, 0)); ?>
     </div>
 </div>
 
