@@ -105,7 +105,7 @@
         <p class="explanation">
 			<?php echo __('If checked, an icon is added to all external links.'); ?>
 		</p>
-		<?php echo $view->formCheckbox('clickable_links_plus_externallinkicon', $clickable_links_plus_externallinkicon, null, array(1, 0)); ?>
+        <?php echo $view->formCheckbox('clickable_links_plus_externallinkicon', $clickable_links_plus_externallinkicon, null, array(1, 0)); ?>
     </div>
 </div>
 
